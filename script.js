@@ -1,3 +1,7 @@
+// Get references to the #generate element
+var generateBtn = document.querySelector("#generate");
+
+
 // Array of special characters to be included in password
 var specialCharacters = [
   '@',
@@ -87,41 +91,17 @@ var upperCasedCharacters = [
   'Y',
   'Z'
 ];
-// Get references to the #generate element
-var generateBtn = document.querySelector('#generate');
-// Add event listener to generate button
-generateBtn.addEventListener('click', writePassword);
+
 
 //user input variables
 
-var passwordLength;
-var confirmSpecialCharacter; //= confirm("Would you like to include special character? Click OK to confirm.");
-var confirmNumericCharacters; //= confirm("Would you like to include number? Click OK to confirm.");
-var confirmLowerCasedCharacters; // = confirm("Would you like to include lowercased letter? Click OK to confirm.");
-var confirmUpperCasedCharacters; //= confirm("Would you like to include uppercased letter? Click OK to confirm.");
+var passwordLength = "";
+var confirmSpecialCharacter; 
+var confirmNumericCharacters; 
+var confirmLowerCasedCharacters; 
+var confirmUpperCasedCharacters; 
 
-// Function to prompt user for password options
-function getPasswordOptions() {
 
-  confirmSpecialCharacter = confirm("Would you like to include special charackters? Click OK if yes.");
-  confirmNumericCharacters = confirm("Would you like to include numbers? Click OK if yes.");
-  confirmLowerCasedCharacters = confirm("Would you like to include lowercased letter? Click OK if yes.");
-  confirmUpperCasedCharacters = confirm("Would you like to include uppercased letter? Click OK if yes.");
-
-  if (confirmSpecialCharacter === false && confirmNumericCharacters === false && confirmLowerCasedCharacters === false && confirmUpperCasedCharacters === false) {
-    alert("You must choose at least one criteria! Please, try again.");
-    confirmSpecialCharacter = confirm("Would you like to include special charackters? Click OK if yes.");
-    confirmNumericCharacters = confirm("Would you like to include numbers? Click OK if yes.");
-    confirmLowerCasedCharacters = confirm("Would you like to include lowercased letter? Click OK if yes.");
-    confirmUpperCasedCharacters = confirm("Would you like to include uppercased letter? Click OK if yes.");
-  }
-
-}
-
-// Function for getting a random element from an array
-function getRandom() {
-
-}
 
 // Function to generate password with user input
 function generatePassword() {
@@ -139,29 +119,63 @@ function generatePassword() {
 
   //call the password option function 
   getPasswordOptions();
-  //code below makes lags
-  // if (!getPasswordOptions()) {
-  //   alert("You must choose at least one criteria! Please, try again.");
-  //   confirmSpecialCharacter = confirm("Would you like to include special charackters? Click OK if yes.");
-  //   confirmNumericCharacters = confirm("Would you like to include numbers? Click OK if yes.");
-  //   confirmLowerCasedCharacters = confirm("Would you like to include lowercased letter? Click OK if yes.");
-  //   confirmUpperCasedCharacters = confirm("Would you like to include uppercased letter? Click OK if yes.");
-  // }
+  getRandom();
+
 }
 
-//call the generate password function
-//generatePassword();
-// no need to change below code!!
-// Get references to the #generate element
-//var generateBtn = document.querySelector('#generate');
+// Password options function
+function getPasswordOptions() {
+
+  confirmSpecialCharacter = confirm("Would you like to include special charackters? Click OK if yes.");
+  confirmNumericCharacters = confirm("Would you like to include numbers? Click OK if yes.");
+  confirmLowerCasedCharacters = confirm("Would you like to include lowercased letter? Click OK if yes.");
+  confirmUpperCasedCharacters = confirm("Would you like to include uppercased letter? Click OK if yes.");
+
+  if (confirmSpecialCharacter === false && confirmNumericCharacters === false && confirmLowerCasedCharacters === false && confirmUpperCasedCharacters === false) {
+    alert("You must choose at least one criteria! Please, try again.");
+    confirmSpecialCharacter = confirm("Would you like to include special charackters? Click OK if yes.");
+    confirmNumericCharacters = confirm("Would you like to include numbers? Click OK if yes.");
+    confirmLowerCasedCharacters = confirm("Would you like to include lowercased letter? Click OK if yes.");
+    confirmUpperCasedCharacters = confirm("Would you like to include uppercased letter? Click OK if yes.");
+  }
+  
+  passwordCharacters = [];
+  if (confirmSpecialCharacter === true) {
+    passwordCharacters = passwordCharacters.concat(specialCharacters)
+  }
+  if (confirmNumericCharacters === true) {
+    passwordCharacters = passwordCharacters.concat(numericCharacters)
+  }
+  if (confirmLowerCasedCharacters === true) {
+    passwordCharacters = passwordCharacters.concat(lowerCasedCharacters)
+  }
+  if (confirmUpperCasedCharacters === true) {
+    passwordCharacters = passwordCharacters.concat(upperCasedCharacters)
+  }
+  console.log(passwordCharacters);
+  
+}
+
+// Random element function
+function getRandom() {
+  randomPassword = "";
+  for (var i = 0; i < passwordLength; i++) {
+    randomPassword += passwordCharacters[Math.floor(Math.random() * passwordCharacters.length)];
+    
+  }
+  console.log(randomPassword);
+  return randomPassword;
+  
+}
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector('#password');
+  generatePassword();
+  var password = getRandom();
+  var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
 }
 
 // Add event listener to generate button
-//generateBtn.addEventListener('click', writePassword);
+generateBtn.addEventListener("click", writePassword);
