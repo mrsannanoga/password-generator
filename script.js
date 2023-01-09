@@ -116,12 +116,13 @@ function generatePassword() {
   } else if (passwordLength <= 9 || passwordLength >= 65) {
     passwordLength = prompt("You have to choose between 10 and 64. Please, try again.");
   }
-  alert("Your password will have " + passwordLength + " characters");
+  alert("Your password will have " + passwordLength + " characters.");
 
   //call the password option function 
   getPasswordOptions();
   //call the random password function
   getRandom();
+  return randomPassword;
 
 }
 
@@ -165,19 +166,17 @@ function getRandom() {
   //get random combination of characters having in mind chosen number and types of characters 
   for (var i = 0; i < passwordLength; i++) {
     randomPassword += passwordCharacters[Math.floor(Math.random() * passwordCharacters.length)];
-    //show the combination in the console
-    console.log(randomPassword);
+    
   }
-  
-  
-  return randomPassword;
-  
+  //show the combination in the console
+  console.log(randomPassword);
+    
 }
 
 // Write password to the #password input
 function writePassword() {
-  generatePassword();
-  var password = getRandom();
+  
+  var password =generatePassword(); 
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
