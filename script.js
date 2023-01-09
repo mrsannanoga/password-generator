@@ -122,7 +122,7 @@ function generatePassword() {
   getPasswordOptions();
   //call the random password function
   getRandom();
-  return randomPassword;
+  
 
 }
 
@@ -170,13 +170,13 @@ function getRandom() {
   }
   //show the combination in the console
   console.log(randomPassword);
-    
+  return randomPassword;
 }
 
 // Write password to the #password input
 function writePassword() {
-  
-  var password =generatePassword(); 
+  generatePassword(); 
+  var password = randomPassword;
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
