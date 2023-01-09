@@ -10,7 +10,7 @@ This application was build using HTML, CSS and JavaScript. To get this project u
 ## Usage
 This application generates unique password which may be composed randomly from special characters and/or numbers and/or lowercased letter and/or uppercased letter. To start generating the password user has to open the link with the webpage application provided in above section and click "generate password". Have a look at the full demo video below.
 
-![Full Demo Video](assets/screen-recording.mov)
+![Full Demo Video](https://user-images.githubusercontent.com/117078932/211431421-a55fd767-8b64-48be-9bba-ef32f1e15c6f.mov)
 
 ## Feature details
 When user click "generate bottom" the website asks the user "How many characters the password shall have?"
