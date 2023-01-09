@@ -1,8 +1,8 @@
-// Get references to the #generate element
+// Get references to the #generate element from html file
 var generateBtn = document.querySelector("#generate");
 
 
-// Array of special characters to be included in password
+// Array of special characters
 var specialCharacters = [
   '@',
   '%',
@@ -29,10 +29,10 @@ var specialCharacters = [
   '.'
 ];
 
-// Array of numeric characters to be included in password
+// Array of numeric characters 
 var numericCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
-// Array of lowercase characters to be included in password
+// Array of lowercase characters 
 var lowerCasedCharacters = [
   'a',
   'b',
@@ -62,7 +62,7 @@ var lowerCasedCharacters = [
   'z'
 ];
 
-// Array of uppercase characters to be included in password
+// Array of uppercase characters 
 var upperCasedCharacters = [
   'A',
   'B',
@@ -93,7 +93,7 @@ var upperCasedCharacters = [
 ];
 
 
-//user input variables
+//User input variables
 
 var passwordLength = "";
 var confirmSpecialCharacter; 
@@ -106,9 +106,10 @@ var confirmUpperCasedCharacters;
 // Function to generate password with user input
 function generatePassword() {
   passwordLength = prompt("How many characters would you like your password to contain?");
-
+// If statement for none number chosen
   if (!passwordLength) {
     passwordLength = prompt("You haven't chosen any number. Please, try again!");
+    // if statement for wrongly chosen number, condition added
     if (passwordLength <= 9 || passwordLength >= 65) {
       passwordLength = prompt("You have to choose between 10 and 64. Please, try again.");
     }
@@ -119,18 +120,19 @@ function generatePassword() {
 
   //call the password option function 
   getPasswordOptions();
+  //call the random password function
   getRandom();
 
 }
 
 // Password options function
 function getPasswordOptions() {
-
+//options to choose
   confirmSpecialCharacter = confirm("Would you like to include special charackters? Click OK if yes.");
   confirmNumericCharacters = confirm("Would you like to include numbers? Click OK if yes.");
   confirmLowerCasedCharacters = confirm("Would you like to include lowercased letter? Click OK if yes.");
   confirmUpperCasedCharacters = confirm("Would you like to include uppercased letter? Click OK if yes.");
-
+// if statement for none criteria chosen
   if (confirmSpecialCharacter === false && confirmNumericCharacters === false && confirmLowerCasedCharacters === false && confirmUpperCasedCharacters === false) {
     alert("You must choose at least one criteria! Please, try again.");
     confirmSpecialCharacter = confirm("Would you like to include special charackters? Click OK if yes.");
@@ -138,7 +140,7 @@ function getPasswordOptions() {
     confirmLowerCasedCharacters = confirm("Would you like to include lowercased letter? Click OK if yes.");
     confirmUpperCasedCharacters = confirm("Would you like to include uppercased letter? Click OK if yes.");
   }
-  
+  // get an array for types of characters that were chosen via above questions
   passwordCharacters = [];
   if (confirmSpecialCharacter === true) {
     passwordCharacters = passwordCharacters.concat(specialCharacters)
@@ -152,6 +154,7 @@ function getPasswordOptions() {
   if (confirmUpperCasedCharacters === true) {
     passwordCharacters = passwordCharacters.concat(upperCasedCharacters)
   }
+  //show chosen characters in the console
   console.log(passwordCharacters);
   
 }
@@ -159,11 +162,14 @@ function getPasswordOptions() {
 // Random element function
 function getRandom() {
   randomPassword = "";
+  //get random combination of characters having in mind chosen number and types of characters 
   for (var i = 0; i < passwordLength; i++) {
     randomPassword += passwordCharacters[Math.floor(Math.random() * passwordCharacters.length)];
-    
+    //show the combination in the console
+    console.log(randomPassword);
   }
-  console.log(randomPassword);
+  
+  
   return randomPassword;
   
 }
