@@ -107,13 +107,13 @@ var confirmUpperCasedCharacters;
 function generatePassword() {
   passwordLength = prompt("How many characters would you like your password to contain?");
 // If statement for none number chosen
-  if (!passwordLength) {
+  while (!passwordLength) {
     passwordLength = prompt("You haven't chosen any number. Please, try again!");
     // if statement for wrongly chosen number, condition added
     if (passwordLength <= 9 || passwordLength >= 65) {
       passwordLength = prompt("You have to choose between 10 and 64. Please, try again.");
     }
-  } else if (passwordLength <= 9 || passwordLength >= 65) {
+  } while (passwordLength <= 9 || passwordLength >= 65) {
     passwordLength = prompt("You have to choose between 10 and 64. Please, try again.");
   }
   alert("Your password will have " + passwordLength + " characters.");
